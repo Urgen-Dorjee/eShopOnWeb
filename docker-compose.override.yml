@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+
+  sqlserver.data:
+   environment:
+    - ACCEPT_EULA=Y
+    - SA_PASSWORD=Pass@word
+
+   ports:
+     - "5433:1433"
+  webui:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - Connection=Server=sqlserver.data;Database=eWebShopDatabase;User=sa;Password=Pass@word
+     
+    ports:
+      - "5107:80"
+

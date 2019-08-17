@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+
+  sqlserver.data:
+    image: mcr.microsoft.com/mssql/server:2017-latest    
+
+  webui:
+    image: ${DOCKER_REGISTRY-}webui
+    build: 
+      context: .
+      dockerfile: src/Web/WebUI/Dockerfile
+    depends_on:
+      - sqlserver.data
+
